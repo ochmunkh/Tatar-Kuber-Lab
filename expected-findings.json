@@ -1,0 +1,21 @@
+{
+  "scenario": "checkov-offline (broken/)",
+  "note": "Real Checkov 3.3.8 output over broken/. Regression baseline for tatar-kuber verify-lab.",
+  "min_findings": 50,
+  "controls": [
+    "TATAR-CON-001",
+    "TATAR-CON-002",
+    "TATAR-CON-003",
+    "TATAR-CON-005",
+    "TATAR-CON-006",
+    "TATAR-CON-009",
+    "TATAR-CON-010",
+    "TATAR-CON-011",
+    "TATAR-IMG-003",
+    "TATAR-OPS-001",
+    "TATAR-OPS-002",
+    "TATAR-OPS-005",
+    "TATAR-RBAC-002",
+    "TATAR-SEC-003"
+  ]
+}
