@@ -4,10 +4,18 @@ Reproducible **vulnerable** and **hardened** Kubernetes manifests — the offici
 demo and regression corpus for the [**TATAR-Kuber**](https://github.com/ochmunkh/tatar-kuber)
 security engine.
 
+**Author:** Enkhbat.O — Security analyst
+
 > Two repositories, one product:
 > - **[tatar-kuber](https://github.com/ochmunkh/tatar-kuber)** — the engine (scanner
 >   orchestration, canonical mapping, dedup, risk, reports).
 > - **tatar-kuber-lab** (this repo) — the manifests + expected results that prove it works.
+
+Running the lab through TATAR-Kuber (English / Монгол):
+
+| English | Монгол |
+|---|---|
+| ![report en](docs/img/report-en.jpg) | ![report mn](docs/img/report-mn.jpg) |
 
 ## Pipeline this repo demonstrates
 
