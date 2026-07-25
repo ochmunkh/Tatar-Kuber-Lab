@@ -115,3 +115,40 @@ tools for exact parity. Scanner rule IDs are PROVISIONAL; this lab keeps them ho
 ## License
 
 Apache-2.0
+
+---
+
+## Монгол хэл дээр
+
+[**TATAR-Kuber**](https://github.com/ochmunkh/tatar-kuber) engine-ийг турших, demo хийх,
+regression шалгах зориулалттай **эмзэг** ба **hardened** Kubernetes manifest-ийн цуглуулга.
+
+- `broken/` — аюулгүй байдлын control-уудыг зориудаар зөрчсөн
+- `fixed/` — hardening зөв хийсэн хувилбарууд
+- `raw/` — бодит/төлөөлөх scanner гаралт (checkov бодит; trivy/kubescape/popeye жишээ) —
+  cluster эсвэл суулгацгүйгээр **offline** ажиллуулах боломжтой
+- `normalized/tatar-findings.json` — TATAR-ийн нэгтгэсэн гаралт (raw → normalized)
+- `expected/expected-findings.json` — `tatar-kuber verify-lab`-ийн regression baseline
+
+### 30 секундийн demo (offline)
+
+```bash
+go install github.com/ochmunkh/tatar-kuber/cmd/tatar-kuber@latest
+git clone https://github.com/ochmunkh/tatar-kuber-lab && cd tatar-kuber-lab
+git clone https://github.com/ochmunkh/tatar-kuber ../engine
+
+tatar-kuber scan   --raw-dir raw --lang mn --registry ../engine/schema/canonical-controls.yaml -o normalized
+mv normalized/scan-result.json normalized/tatar-findings.json
+tatar-kuber report --input normalized/tatar-findings.json -o html --out normalized/report.html
+tatar-kuber verify-lab --input normalized/tatar-findings.json --expected expected/expected-findings.json
+```
+
+### Яагаад хэрэгтэй вэ
+
+1. **Demo** — clone хийгээд, scan хийж, нэг минутад дуусна (cluster хэрэггүй).
+2. **Regression** — `verify-lab` нь хүлээгдсэн control алга болох, эсвэл тоо өөрчлөгдвөл
+   шууд FAIL болно (ж: dedup эвдэрч 16 control → 8).
+3. **CI** — push бүрт engine-ийг build хийж баталгаажуулна.
+4. **Benchmark** — Trivy vs Kubescape vs Checkov vs нэгтгэсэн TATAR-ийг харьцуулах нийтлэг суурь.
+
+**Зохиогч:** Enkhbat.O — Security analyst
