@@ -1,0 +1,30 @@
+{
+  "results": [
+    { "resourceID": "apps/v1//production/Deployment/privileged-app",
+      "controls": [
+        { "controlID": "C-0057", "name": "Privileged container", "status": { "status": "failed" },
+          "rules": [ { "paths": [ { "fixPath": { "path": "spec.template.spec.containers[0].securityContext.privileged", "value": "false" } } ] } ] },
+        { "controlID": "C-0260", "name": "Missing NetworkPolicy", "status": { "status": "failed" } }
+      ] },
+    { "resourceID": "apps/v1//production/Deployment/root-app",
+      "controls": [
+        { "controlID": "C-0013", "name": "Non-root containers", "status": { "status": "failed" } },
+        { "controlID": "C-0016", "name": "Allow privilege escalation", "status": { "status": "failed" } }
+      ] },
+    { "resourceID": "apps/v1//production/Deployment/host-ns-app",
+      "controls": [
+        { "controlID": "C-0038", "name": "Host PID/IPC", "status": { "status": "failed" } },
+        { "controlID": "C-0041", "name": "HostNetwork", "status": { "status": "failed" } }
+      ] },
+    { "resourceID": "rbac.authorization.k8s.io/v1//ClusterRole/too-powerful",
+      "controls": [
+        { "controlID": "C-0272", "name": "Wildcard in rules", "status": { "status": "failed" } }
+      ] }
+  ],
+  "resources": [
+    { "resourceID": "apps/v1//production/Deployment/privileged-app", "object": { "kind": "Deployment", "metadata": { "name": "privileged-app", "namespace": "production" } } },
+    { "resourceID": "apps/v1//production/Deployment/root-app", "object": { "kind": "Deployment", "metadata": { "name": "root-app", "namespace": "production" } } },
+    { "resourceID": "apps/v1//production/Deployment/host-ns-app", "object": { "kind": "Deployment", "metadata": { "name": "host-ns-app", "namespace": "production" } } },
+    { "resourceID": "rbac.authorization.k8s.io/v1//ClusterRole/too-powerful", "object": { "kind": "ClusterRole", "metadata": { "name": "too-powerful" } } }
+  ]
+}

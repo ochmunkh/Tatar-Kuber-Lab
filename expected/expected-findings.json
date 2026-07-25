@@ -1,0 +1,13 @@
+{
+  "scenario": "offline multi-scanner (broken/): checkov + trivy + kubescape + popeye",
+  "note": "Deterministic over the pinned raw/ output. Regression baseline for tatar-kuber verify-lab.",
+  "total": 57,
+  "counts": { "CRITICAL": 0, "HIGH": 11, "MEDIUM": 26, "LOW": 20, "INFO": 0 },
+  "controls": [
+    "TATAR-CON-001", "TATAR-CON-002", "TATAR-CON-003", "TATAR-CON-005", "TATAR-CON-006",
+    "TATAR-CON-009", "TATAR-CON-010", "TATAR-CON-011",
+    "TATAR-IMG-003", "TATAR-NET-001",
+    "TATAR-OPS-001", "TATAR-OPS-002", "TATAR-OPS-005",
+    "TATAR-RBAC-002", "TATAR-SEC-001", "TATAR-SEC-003"
+  ]
+}

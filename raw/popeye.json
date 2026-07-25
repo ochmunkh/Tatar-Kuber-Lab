@@ -1,0 +1,10 @@
+{
+  "popeye": {
+    "score": 61,
+    "grade": "C",
+    "sanitizers": [
+      { "sanitizer": "pods", "issues": {
+        "production/latest-app": [ { "level": 1, "message": "[POP-106] No image tag/digest pinned; using latest is unwise" } ] } }
+    ]
+  }
+}

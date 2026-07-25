@@ -1,1 +1,1 @@
-{ "checkov": "3.3.8" }
+{ "checkov": "3.3.8", "trivy": "0.53.0", "kubescape": "3.0.8", "popeye": "0.21.5" }

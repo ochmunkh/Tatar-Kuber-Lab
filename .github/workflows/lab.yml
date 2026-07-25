@@ -15,8 +15,11 @@ jobs:
         with: { go-version: '1.22' }
       - name: Build tatar-kuber
         run: (cd engine && go build -o "$GITHUB_WORKSPACE/tatar-kuber" ./cmd/tatar-kuber)
-      - name: Scan lab (offline raw) + verify
+      - name: Normalize offline raw + verify baseline
         run: |
           ./tatar-kuber scan --raw-dir raw --cluster tatar-kuber-lab \
-            --registry engine/schema/canonical-controls.yaml -o out
-          ./tatar-kuber verify-lab --input out/scan-result.json --expected expected-findings.json
+            --registry engine/schema/canonical-controls.yaml -o normalized
+          mv -f normalized/scan-result.json normalized/tatar-findings.json
+          ./tatar-kuber verify-lab \
+            --input normalized/tatar-findings.json \
+            --expected expected/expected-findings.json

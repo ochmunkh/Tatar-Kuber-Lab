@@ -1,0 +1,35 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "broken",
+  "ArtifactType": "filesystem",
+  "Resources": [
+    { "Namespace": "production", "Kind": "Deployment", "Name": "privileged-app",
+      "Results": [ { "Target": "privileged.yaml", "Class": "config", "Type": "kubernetes",
+        "Misconfigurations": [
+          { "AVDID": "AVD-KSV0017", "ID": "KSV017", "Title": "Privileged container", "Description": "Container running in privileged mode.", "Severity": "HIGH", "Resolution": "Do not set privileged to true.", "References": ["https://avd.aquasec.com/misconfig/ksv017"], "CauseMetadata": { "Resource": "spec.template.spec.containers[0].securityContext.privileged", "StartLine": 15 } }
+        ] } ] },
+    { "Namespace": "production", "Kind": "Deployment", "Name": "root-app",
+      "Results": [ { "Target": "root-user.yaml", "Class": "config", "Type": "kubernetes",
+        "Misconfigurations": [
+          { "AVDID": "AVD-KSV0012", "ID": "KSV012", "Title": "Runs as root", "Description": "Container runs as root.", "Severity": "MEDIUM", "Resolution": "runAsNonRoot=true", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.securityContext.runAsNonRoot", "StartLine": 16 } },
+          { "AVDID": "AVD-KSV0001", "ID": "KSV001", "Title": "Allow privilege escalation", "Description": "allowPrivilegeEscalation=true.", "Severity": "HIGH", "Resolution": "allowPrivilegeEscalation=false", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.securityContext.allowPrivilegeEscalation", "StartLine": 17 } }
+        ] } ] },
+    { "Namespace": "production", "Kind": "Deployment", "Name": "latest-app",
+      "Results": [ { "Target": "latest-tag.yaml", "Class": "config", "Type": "kubernetes",
+        "Misconfigurations": [
+          { "AVDID": "AVD-KSV0013", "ID": "KSV013", "Title": "Image tag :latest", "Description": "Image uses latest tag.", "Severity": "MEDIUM", "Resolution": "Use a specific tag.", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.containers[0].image", "StartLine": 14 } },
+          { "AVDID": "AVD-KSV0011", "ID": "KSV011", "Title": "CPU not limited", "Description": "No CPU limit.", "Severity": "LOW", "Resolution": "Set resources.limits.cpu", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.containers[0].resources.limits.cpu", "StartLine": 14 } }
+        ] } ] },
+    { "Namespace": "production", "Kind": "Deployment", "Name": "host-ns-app",
+      "Results": [ { "Target": "host-namespaces.yaml", "Class": "config", "Type": "kubernetes",
+        "Misconfigurations": [
+          { "AVDID": "AVD-KSV0010", "ID": "KSV010", "Title": "hostPID", "Description": "hostPID=true.", "Severity": "HIGH", "Resolution": "hostPID=false", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.hostPID", "StartLine": 13 } },
+          { "AVDID": "AVD-KSV0009", "ID": "KSV009", "Title": "hostNetwork", "Description": "hostNetwork=true.", "Severity": "HIGH", "Resolution": "hostNetwork=false", "References": [], "CauseMetadata": { "Resource": "spec.template.spec.hostNetwork", "StartLine": 12 } }
+        ] } ] },
+    { "Namespace": "production", "Kind": "Deployment", "Name": "secret-env-app",
+      "Results": [ { "Target": "secret-env.yaml", "Class": "secret",
+        "Secrets": [
+          { "RuleID": "aws-secret-access-key", "Category": "AWS", "Severity": "HIGH", "Title": "AWS Secret Access Key", "Match": "value: \"wJalrXUtnFEMI/K7MDENG/****\"" }
+        ] } ] }
+  ]
+}
