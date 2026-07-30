@@ -153,6 +153,22 @@ tatar-kuber report --input normalized/tatar-findings.json -o html --out normaliz
 tatar-kuber verify-lab --input normalized/tatar-findings.json --expected expected/expected-findings.json
 ```
 
+### Эмзэг manifest → хүлээгдэх canonical control (16)
+
+| Файл | Хүлээгдэх TATAR control | Илрүүлэгч |
+|---|---|---|
+| `privileged.yaml` | CON-001, NET-001 | Trivy · Kubescape · Checkov |
+| `root-user.yaml` | CON-002, CON-003 | Checkov · Trivy · Kubescape |
+| `latest-tag.yaml` | IMG-003, CON-010, OPS-001/002/005 | Checkov · Trivy · Popeye |
+| `wildcard-rbac.yaml` | RBAC-002 | Checkov · Kubescape |
+| `secret-env.yaml` | SEC-001 | **Trivy secret** (Checkov plaintext-ыг барихгүй) |
+| `host-namespaces.yaml` | CON-005, CON-006 | Checkov · Trivy · Kubescape |
+| _(hardening дутуу)_ | CON-009, CON-011, SEC-003 | Checkov |
+
+**Multi-scanner давуу тал:** `SEC-001` (Trivy secret) ба `NET-001` (Kubescape)-ыг **Checkov
+ганцаараа алддаг** — нэгтгэсэн TATAR харагдац барьдаг. `CON-001` privileged-ыг **гурван
+static scanner** олдог → `found_by=[checkov,kubescape,trivy]`, `confidence=HIGH`.
+
 ### Яагаад хэрэгтэй вэ
 
 1. **Demo** — clone хийгээд, scan хийж, нэг минутад дуусна (cluster хэрэггүй).
