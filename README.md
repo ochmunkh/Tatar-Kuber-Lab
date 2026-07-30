@@ -1,5 +1,11 @@
 # TATAR-Kuber Lab
 
+![License](https://img.shields.io/badge/license-Apache--2.0-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-security-326CE5?logo=kubernetes&logoColor=white)
+![Scanners](https://img.shields.io/badge/scanners-Checkov%20%C2%B7%20Trivy%20%C2%B7%20Kubescape%20%C2%B7%20Popeye-2A4D69)
+![Controls](https://img.shields.io/badge/expected-16%20canonical%20controls-1F6F54)
+![verify--lab](https://img.shields.io/badge/verify--lab-PASS-brightgreen)
+
 Reproducible **vulnerable** and **hardened** Kubernetes manifests — the official test,
 demo and regression corpus for the [**TATAR-Kuber**](https://github.com/ochmunkh/tatar-kuber)
 security engine.
@@ -11,11 +17,15 @@ security engine.
 >   orchestration, canonical mapping, dedup, risk, reports).
 > - **tatar-kuber-lab** (this repo) — the manifests + expected results that prove it works.
 
-Running the lab through TATAR-Kuber (English / Монгол):
+Running the lab through TATAR-Kuber:
 
-| English | Монгол |
-|---|---|
-| ![report en](docs/img/report-en.jpg) | ![report mn](docs/img/report-mn.jpg) |
+**🇬🇧 English report**
+
+![TATAR-Kuber report — English](docs/img/report-en.jpg)
+
+**🇲🇳 Монгол тайлан**
+
+![TATAR-Kuber тайлан — Монгол](docs/img/report-mn.jpg)
 
 ## Pipeline this repo demonstrates
 
