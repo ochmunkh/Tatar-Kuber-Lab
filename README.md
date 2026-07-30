@@ -4,7 +4,7 @@ Reproducible **vulnerable** and **hardened** Kubernetes manifests — the offici
 demo and regression corpus for the [**TATAR-Kuber**](https://github.com/ochmunkh/tatar-kuber)
 security engine.
 
-**Author:** Enkhbat.O — Security analyst
+**Author:** Enkhbat.O — Security Analyst
 
 > Two repositories, one product:
 > - **[tatar-kuber](https://github.com/ochmunkh/tatar-kuber)** — the engine (scanner
@@ -151,4 +151,4 @@ tatar-kuber verify-lab --input normalized/tatar-findings.json --expected expecte
 3. **CI** — push бүрт engine-ийг build хийж баталгаажуулна.
 4. **Benchmark** — Trivy vs Kubescape vs Checkov vs нэгтгэсэн TATAR-ийг харьцуулах нийтлэг суурь.
 
-**Зохиогч:** Enkhbat.O — Security analyst
+**Зохиогч:** Enkhbat.O — Security Analyst
