@@ -9,7 +9,7 @@ jobs:
       - name: Checkout engine
         uses: actions/checkout@v4
         with:
-          repository: ochmunkh/tatar-kuber
+          repository: ochmunkh/Tatar-Kuber
           path: engine
       - uses: actions/setup-go@v5
         with: { go-version: '1.22' }
