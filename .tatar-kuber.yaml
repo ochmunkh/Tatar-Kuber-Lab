@@ -1,0 +1,12 @@
+# TATAR-Kuber gate policy for the lab.
+# The lab corpus is intentionally vulnerable (11 HIGH), so `gate --fail-on high`
+# is EXPECTED to fail — that's the point: the gate blocks an insecure posture.
+fail_on: high
+min_score: 0
+
+# Example accepted-risk waiver (expires so it can't be forgotten):
+suppress:
+  - control: TATAR-IMG-003
+    resource: deployment/latest-app
+    reason: "Lab example of a documented, time-boxed waiver"
+    expires: 2027-01-01

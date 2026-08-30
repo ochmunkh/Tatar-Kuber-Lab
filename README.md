@@ -4,6 +4,7 @@
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-security-326CE5?logo=kubernetes&logoColor=white)
 ![Scanners](https://img.shields.io/badge/scanners-Checkov%20%C2%B7%20Trivy%20%C2%B7%20Kubescape%20%C2%B7%20Popeye-2A4D69)
 ![Controls](https://img.shields.io/badge/expected-16%20canonical%20controls-1F6F54)
+![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-for%20Containers-4a2c6f)
 ![verify--lab](https://img.shields.io/badge/verify--lab-PASS-brightgreen)
 
 Reproducible **vulnerable** and **hardened** Kubernetes manifests — the official test,
@@ -14,8 +15,12 @@ security engine.
 
 > Two repositories, one product:
 > - **[tatar-kuber](https://github.com/ochmunkh/tatar-kuber)** — the engine (scanner
->   orchestration, canonical mapping, dedup, risk, reports).
+>   orchestration, canonical mapping, dedup, risk, MITRE ATT&CK, reports).
 > - **tatar-kuber-lab** (this repo) — the manifests + expected results that prove it works.
+>
+> The engine also ships a tiny `examples/demo` (a **different**, self-contained dataset for its
+> own CI/Pages, story: privileged on `deployment/api`). This lab is the **full** corpus +
+> `verify-lab` regression baseline — not a duplicate, a different scope.
 
 Running the lab through TATAR-Kuber:
 
@@ -46,17 +51,18 @@ raw/                          normalized/                report
 
 ## 30-second demo (offline)
 
+The canonical registry is **embedded in the binary** — no engine checkout needed.
+
 ```bash
 go install github.com/ochmunkh/tatar-kuber/cmd/tatar-kuber@latest
 git clone https://github.com/ochmunkh/tatar-kuber-lab && cd tatar-kuber-lab
-git clone https://github.com/ochmunkh/tatar-kuber ../engine   # for the canonical registry
-
-tatar-kuber scan   --raw-dir raw --registry ../engine/schema/canonical-controls.yaml -o normalized
-mv normalized/scan-result.json normalized/tatar-findings.json
-tatar-kuber report --input normalized/tatar-findings.json -o html --out normalized/report.html
-tatar-kuber verify-lab --input normalized/tatar-findings.json --expected expected/expected-findings.json
-# Монголоор:  tatar-kuber scan ... --lang mn
+./run-lab.sh            # or: ./run-lab.sh mn   for a Mongolian report
 ```
+
+`run-lab.sh` exercises the **full** feature set against this corpus:
+`doctor` → `scan` (canonical + dedup + confidence + risk + **MITRE ATT&CK**) →
+`report` (HTML · SARIF · JSON) → `gate` (policy [`.tatar-kuber.yaml`](.tatar-kuber.yaml)) →
+`verify-lab` (regression baseline).
 
 Expected:
 
@@ -142,16 +148,18 @@ regression шалгах зориулалттай **эмзэг** ба **hardened*
 
 ### 30 секундийн demo (offline)
 
+Canonical registry нь binary дотор **шигтгэсэн** тул engine-ийг clone хийх шаардлагагүй.
+
 ```bash
 go install github.com/ochmunkh/tatar-kuber/cmd/tatar-kuber@latest
 git clone https://github.com/ochmunkh/tatar-kuber-lab && cd tatar-kuber-lab
-git clone https://github.com/ochmunkh/tatar-kuber ../engine
-
-tatar-kuber scan   --raw-dir raw --lang mn --registry ../engine/schema/canonical-controls.yaml -o normalized
-mv normalized/scan-result.json normalized/tatar-findings.json
-tatar-kuber report --input normalized/tatar-findings.json -o html --out normalized/report.html
-tatar-kuber verify-lab --input normalized/tatar-findings.json --expected expected/expected-findings.json
+./run-lab.sh mn         # монгол тайлан
 ```
+
+`run-lab.sh` нь энэ corpus дээр **бүх** боломжийг ажиллуулна:
+`doctor` → `scan` (canonical + dedup + confidence + risk + **MITRE ATT&CK**) →
+`report` (HTML · SARIF · JSON) → `gate` (бодлого [`.tatar-kuber.yaml`](.tatar-kuber.yaml)) →
+`verify-lab` (regression baseline).
 
 ### Эмзэг manifest → хүлээгдэх canonical control (16)
 

@@ -1,25 +1,30 @@
 name: TATAR-Kuber Lab
 on: [push, pull_request]
+
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout lab
         uses: actions/checkout@v4
+
       - name: Checkout engine
         uses: actions/checkout@v4
         with:
           repository: ochmunkh/Tatar-Kuber
           path: engine
+
       - uses: actions/setup-go@v5
-        with: { go-version: '1.22' }
-      - name: Build tatar-kuber
-        run: (cd engine && go build -o "$GITHUB_WORKSPACE/tatar-kuber" ./cmd/tatar-kuber)
-      - name: Normalize offline raw + verify baseline
+        with:
+          go-version: "stable" # patched stdlib (matches engine go.mod toolchain)
+
+      - name: Build tatar-kuber (canonical registry embedded)
         run: |
-          ./tatar-kuber scan --raw-dir raw --cluster tatar-kuber-lab \
-            --registry engine/schema/canonical-controls.yaml -o normalized
-          mv -f normalized/scan-result.json normalized/tatar-findings.json
-          ./tatar-kuber verify-lab \
-            --input normalized/tatar-findings.json \
-            --expected expected/expected-findings.json
+          (cd engine && go build -o "$GITHUB_WORKSPACE/tatar-kuber" ./cmd/tatar-kuber)
+          echo "$GITHUB_WORKSPACE" >> "$GITHUB_PATH"
+
+      - name: Run the full lab (doctor · scan · report ×3 · gate · verify-lab)
+        run: ./run-lab.sh
