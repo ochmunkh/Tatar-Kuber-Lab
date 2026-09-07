@@ -4,7 +4,7 @@
     "grade": "C",
     "sanitizers": [
       { "sanitizer": "pods", "issues": {
-        "production/latest-app": [ { "level": 1, "message": "[POP-106] No image tag/digest pinned; using latest is unwise" } ] } }
+        "production/latest-app": [ { "level": 2, "message": "[POP-101] Image tagged \"latest\" in use" } ] } }
     ]
   }
 }
