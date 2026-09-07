@@ -1,11 +1,11 @@
 {
   "scenario": "offline multi-scanner (broken/): checkov + trivy + kubescape + popeye",
-  "note": "Deterministic over the pinned raw/ output. Regression baseline for tatar-kuber verify-lab. raw/popeye.json нь ЗОРИУДААР popeye <=0.21-ийн legacy 'sanitizers' схемтэй — tatar-kuber хоёр схемийг (0.22+ 'sections' ба legacy) хоёуланг уншиж чадахыг батална.",
-  "total": 57,
+  "note": "Deterministic over the pinned raw/ output. Regression baseline for tatar-kuber verify-lab. raw/popeye.json нь ЗОРИУДААР popeye <=0.21-ийн legacy 'sanitizers' схемтэй — tatar-kuber хоёр схемийг (0.22+ 'sections' ба legacy) хоёуланг уншиж чадахыг батална. v1.0.2-т Checkov-ийн зураглал upstream-тай тулгагдаж 18 -> 28 болсон тул control 16 -> 19, нийт 57 -> 69.",
+  "total": 69,
   "counts": {
     "CRITICAL": 0,
-    "HIGH": 11,
-    "MEDIUM": 27,
+    "HIGH": 17,
+    "MEDIUM": 33,
     "LOW": 19,
     "INFO": 0
   },
@@ -13,8 +13,10 @@
     "TATAR-CON-001",
     "TATAR-CON-002",
     "TATAR-CON-003",
+    "TATAR-CON-004",
     "TATAR-CON-005",
     "TATAR-CON-006",
+    "TATAR-CON-008",
     "TATAR-CON-009",
     "TATAR-CON-010",
     "TATAR-CON-011",
@@ -24,6 +26,7 @@
     "TATAR-OPS-002",
     "TATAR-OPS-005",
     "TATAR-RBAC-002",
+    "TATAR-RBAC-003",
     "TATAR-SEC-001",
     "TATAR-SEC-003"
   ]
