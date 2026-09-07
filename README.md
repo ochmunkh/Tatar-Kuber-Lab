@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-Apache--2.0-blue)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-security-326CE5?logo=kubernetes&logoColor=white)
 ![Scanners](https://img.shields.io/badge/scanners-Checkov%20%C2%B7%20Trivy%20%C2%B7%20Kubescape%20%C2%B7%20Popeye-2A4D69)
-![Controls](https://img.shields.io/badge/expected-16%20canonical%20controls-1F6F54)
+![Controls](https://img.shields.io/badge/expected-19%20canonical%20controls-1F6F54)
 ![MITRE](https://img.shields.io/badge/MITRE%20ATT%26CK-for%20Containers-4a2c6f)
 ![verify--lab](https://img.shields.io/badge/verify--lab-PASS-brightgreen)
 
@@ -68,12 +68,12 @@ Expected:
 
 ```
 verify-lab: offline multi-scanner (broken/): checkov + trivy + kubescape + popeye
-  controls: expected 16, missing 0
-  findings: actual 57
-  CRITICAL  expected 0,  actual 0   [ok]
-  HIGH      expected 11, actual 11  [ok]
-  MEDIUM    expected 26, actual 26  [ok]
-  LOW       expected 20, actual 20  [ok]
+  controls: expected 19, missing 0
+  findings: actual 69
+  CRITICAL  expected 1,  actual 1   [ok]
+  HIGH      expected 16, actual 16  [ok]
+  MEDIUM    expected 33, actual 33  [ok]
+  LOW       expected 19, actual 19  [ok]
 RESULT: PASS
 ```
 
@@ -97,27 +97,36 @@ kubectl apply -f broken/
 # collect scanner output → tatar-kuber scan
 ```
 
-## Broken → expected canonical controls (16)
+## Broken → expected canonical controls (19)
 
 | File | Expected TATAR controls | Detected by |
 |---|---|---|
 | `privileged.yaml` | CON-001, NET-001 | Trivy · Kubescape · Checkov |
 | `root-user.yaml` | CON-002, CON-003 | Checkov · Trivy · Kubescape |
 | `latest-tag.yaml` | IMG-003, CON-010, OPS-001/002/005 | Checkov · Trivy · Popeye |
-| `wildcard-rbac.yaml` | RBAC-002 | Checkov · Kubescape |
+| `wildcard-rbac.yaml` | RBAC-001, RBAC-002, RBAC-003 | Checkov · Kubescape |
 | `secret-env.yaml` | SEC-001 | **Trivy secret** (Checkov misses plaintext) |
 | `host-namespaces.yaml` | CON-005, CON-006 | Checkov · Trivy · Kubescape |
-| _(hardening gaps)_ | CON-009, CON-011, SEC-003 | Checkov |
+| _(hardening gaps)_ | CON-004, CON-008, CON-009, CON-011, SEC-003 | Checkov |
 
 Multi-scanner wins: `SEC-001` (Trivy secret) and `NET-001` (Kubescape) are **missed by
 Checkov alone** — the unified TATAR view catches them. `CON-001` privileged is found by
 **all three static scanners** → `found_by=[checkov,kubescape,trivy]`, `confidence=HIGH`.
 
+`wildcard-rbac.yaml` also shows why mapping precision matters: Checkov's `CKV_K8S_49`
+(wildcard verbs) and Kubescape's `C-0272` (administrative roles) are **different findings on the
+same ClusterRole** — RBAC-002 (HIGH) and RBAC-001 (CRITICAL). Until the v1.0.2 mapping audit,
+`C-0272` was mis-mapped onto "wildcard permissions" and the two collapsed into one.
+
+> `raw/popeye.json` deliberately uses Popeye's **legacy `sanitizers` schema** (<= 0.21, matching
+> `raw/versions.json`). Popeye 0.22 renamed it to `sections`; keeping the old shape here proves
+> tatar-kuber still reads both.
+
 ## Why this lab
 
 1. **Demo** — clone, scan, done in a minute (no cluster).
 2. **Regression** — `verify-lab` fails loudly if a release drops an expected control or
-   changes counts (e.g. dedup regression: 16 controls → 8).
+   changes counts (e.g. dedup regression: 19 controls → 8).
 3. **CI** — `.github/workflows/lab.yml` builds the engine and verifies on every push.
 4. **Benchmark** — a shared, honest corpus to compare Trivy vs Kubescape vs Checkov vs
    the unified TATAR view.
@@ -161,17 +170,26 @@ git clone https://github.com/ochmunkh/tatar-kuber-lab && cd tatar-kuber-lab
 `report` (HTML · SARIF · JSON) → `gate` (бодлого [`.tatar-kuber.yaml`](.tatar-kuber.yaml)) →
 `verify-lab` (regression baseline).
 
-### Эмзэг manifest → хүлээгдэх canonical control (16)
+### Эмзэг manifest → хүлээгдэх canonical control (19)
 
 | Файл | Хүлээгдэх TATAR control | Илрүүлэгч |
 |---|---|---|
 | `privileged.yaml` | CON-001, NET-001 | Trivy · Kubescape · Checkov |
 | `root-user.yaml` | CON-002, CON-003 | Checkov · Trivy · Kubescape |
 | `latest-tag.yaml` | IMG-003, CON-010, OPS-001/002/005 | Checkov · Trivy · Popeye |
-| `wildcard-rbac.yaml` | RBAC-002 | Checkov · Kubescape |
+| `wildcard-rbac.yaml` | RBAC-001, RBAC-002, RBAC-003 | Checkov · Kubescape |
 | `secret-env.yaml` | SEC-001 | **Trivy secret** (Checkov plaintext-ыг барихгүй) |
 | `host-namespaces.yaml` | CON-005, CON-006 | Checkov · Trivy · Kubescape |
-| _(hardening дутуу)_ | CON-009, CON-011, SEC-003 | Checkov |
+| _(hardening дутуу)_ | CON-004, CON-008, CON-009, CON-011, SEC-003 | Checkov |
+
+`wildcard-rbac.yaml` нь зураглалын нарийвчлал яагаад чухал болохыг бас харуулна: Checkov-ийн
+`CKV_K8S_49` (wildcard verb) ба Kubescape-ийн `C-0272` (administrative roles) нь **нэг ClusterRole
+дээрх ӨӨР ХОЁР finding** — RBAC-002 (HIGH) ба RBAC-001 (CRITICAL). v1.0.2-ын зураглалын аудит
+хүртэл `C-0272` нь "wildcard permissions" руу буруу зурагдаж, хоёр нь нэг болж нийлж байв.
+
+> `raw/popeye.json` нь ЗОРИУДААР Popeye-ийн **legacy `sanitizers` схемтэй** (<= 0.21,
+> `raw/versions.json`-той нийцсэн). Popeye 0.22 түүнийг `sections` болгож сольсон; хуучин
+> хэлбэрийг энд үлдээснээр tatar-kuber хоёуланг уншиж чадахыг батална.
 
 **Multi-scanner давуу тал:** `SEC-001` (Trivy secret) ба `NET-001` (Kubescape)-ыг **Checkov
 ганцаараа алддаг** — нэгтгэсэн TATAR харагдац барьдаг. `CON-001` privileged-ыг **гурван

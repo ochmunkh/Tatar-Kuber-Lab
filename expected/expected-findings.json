@@ -1,10 +1,10 @@
 {
   "scenario": "offline multi-scanner (broken/): checkov + trivy + kubescape + popeye",
-  "note": "Deterministic over the pinned raw/ output. Regression baseline for tatar-kuber verify-lab. raw/popeye.json нь ЗОРИУДААР popeye <=0.21-ийн legacy 'sanitizers' схемтэй — tatar-kuber хоёр схемийг (0.22+ 'sections' ба legacy) хоёуланг уншиж чадахыг батална. v1.0.2-т Checkov-ийн зураглал upstream-тай тулгагдаж 18 -> 28 болсон тул control 16 -> 19, нийт 57 -> 69.",
+  "note": "Deterministic over the pinned raw/ output. Regression baseline for tatar-kuber verify-lab. raw/popeye.json нь ЗОРИУДААР popeye <=0.21-ийн legacy 'sanitizers' схемтэй — tatar-kuber хоёр схемийг (0.22+ 'sections' ба legacy) хоёуланг уншиж чадахыг батална. v1.0.2-т Checkov (18->28) ба Kubescape (буруу зурагдсан 6 код: C-0187/C-0272 сольж бичигдсэн, C-0078 CVE биш registry, C-0075 imagePullPolicy, C-0018 зөвхөн readiness) зураглал upstream-тай тулгагдав. C-0272 'administrative roles' одоо RBAC-001 (CRITICAL) руу зөв зурагдсан тул CRITICAL 0->1, HIGH 17->16.",
   "total": 69,
   "counts": {
-    "CRITICAL": 0,
-    "HIGH": 17,
+    "CRITICAL": 1,
+    "HIGH": 16,
     "MEDIUM": 33,
     "LOW": 19,
     "INFO": 0
