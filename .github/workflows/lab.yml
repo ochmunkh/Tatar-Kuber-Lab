@@ -1,5 +1,13 @@
 name: TATAR-Kuber Lab
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  # The engine is checked out at HEAD (below) and Tatar-Kuber's own CI does not run this lab,
+  # so a mapping change there lands green and only breaks here on the lab's next push. The
+  # cron is the backstop; workflow_dispatch lets a maintainer confirm a Kuber merge at once.
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,8 +31,38 @@ jobs:
 
       - name: Build tatar-kuber (canonical registry embedded)
         run: |
-          (cd engine && go build -o "$GITHUB_WORKSPACE/tatar-kuber" ./cmd/tatar-kuber)
-          echo "$GITHUB_WORKSPACE" >> "$GITHUB_PATH"
+          mkdir -p "$RUNNER_TEMP/bin"
+          (cd engine && go build -o "$RUNNER_TEMP/bin/tatar-kuber" ./cmd/tatar-kuber)
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
 
-      - name: Run the full lab (doctor · scan · report ×3 · gate · verify-lab)
+      # The two language halves of README.md drift; this compares their STRUCTURE
+      # (section, table-row and code-block counts) and fails naming the mismatch.
+      - name: README bilingual parity
+        run: python3 scripts/check-readme-parity.py
+
+      - name: Run the full lab (engine + corpus pins · doctor · scan · report ×3 · gate · verify-lab ×2 · baseline diff · docs)
         run: ./run-lab.sh
+
+      # run-lab.sh keeps going after a check fails, so the reports exist even on a red run —
+      # upload them so a reviewer can open the HTML report straight from the PR.
+      - name: Upload lab reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tatar-kuber-lab-reports
+          path: |
+            normalized/report.html
+            normalized/report.json
+            normalized/tatar.sarif
+            .lab-out/baseline.diff
+          if-no-files-found: ignore
+
+      # A run must not rewrite anything tracked: the scan goes to .lab-out/ and the reports are
+      # gitignored. A diff here means the baseline was being OVERWRITTEN instead of compared —
+      # which is exactly how it went two releases stale before.
+      - name: Assert no tracked file was rewritten
+        run: |
+          git diff --exit-code || {
+            echo "::error::run-lab.sh rewrote a tracked file — the baseline is being overwritten, not compared."
+            exit 1
+          }
