@@ -1,0 +1,20 @@
+# Мөрийн төгсгөлийг repo дотор ҮРГЭЛЖ LF байлгана.
+#
+# Windows дээр core.autocrlf=true тул ажлын хуулбарт CRLF болж, `git status` нь
+# хөндөөгүй файлуудыг өөрчлөгдсөн гэж заадаг байв (index нь LF хэвээр —
+# git ls-files --eol: i/lf w/crlf). Хуурамч дохио нь жинхэнэ дохиог нуудаг.
+#
+# Энэ repo-д хоёр файл дээр гоо сайхнаас илүү зүйл эрсдэнэ:
+#   run-lab.sh                      — CRLF-тэй бол Linux дээр "bad interpreter" гэж унана.
+#   expected/expected-findings.json — регрессийн суурь. Мөрийн төгсгөл зөрвөл
+#                                     verify-lab утгагүй зөрүү мэдээлнэ.
+
+*.sh   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+# Хоёртын файлыг git хөрвүүлэхийг оролдож эвдэхээс сэргийлнэ.
+*.jpg binary
+*.png binary
