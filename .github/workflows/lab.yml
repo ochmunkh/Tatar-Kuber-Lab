@@ -1,14 +1,5 @@
 name: TATAR-Kuber Lab
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
-  # Өдөр тутам. Хоёр repo-гийн аль нь ч хөдлөөгүй атлаа орчин хөдөлж болно:
-  # go-version "stable" шинэ хувилбар руу шилжих, action шинэчлэгдэх г.м.
-  # Engine-ийн CI нь engine-ийн push дээр, энэ workflow нь Lab-ийн push дээр
-  # ажиллах тул ямар ч push байхгүй үеийг зөвхөн энэ cron хамгаална.
-  schedule:
-    - cron: "0 6 * * *"
+on: [push, pull_request]
 
 permissions:
   contents: read
