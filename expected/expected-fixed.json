@@ -1,0 +1,13 @@
+{
+  "scenario": "hardened (fixed/): real checkov 3.3.8, zero canonical findings",
+  "note": "ТААМАГЛАЛ БИШ, ХЭМЖСЭН тоо: raw-fixed/checkov.json нь checkov 3.3.8-ыг fixed/ дээр ажиллуулсан бодит гаралт (192 passed / 0 failed / 10 resource / 0 parsing error, `./scripts/regen-raw.sh fixed`). fixed/ нь ямар ч canonical control үүсгэхгүй байхыг батална — hardened manifest дээр engine чимээгүй болох (false negative) нь expected-findings.json барьж чадахгүй эсрэг тал юм. total-ыг ЯГ 0 гэж бичсэн нь шалгалтад хүч өгнө: шинэ finding нэг ч гарвал 0 != 1 болж FAIL болно. Engine-ийн хувилбарын шаардлага нь expected-findings.json-ы \"engine\" талбараар нэг дороос хянагддаг тул энд давхардуулсангүй. fixed/secure-secret-env.yaml нь broken/secret-env.yaml-ийн hardened хос: secret-ийг env `value:`-ээр биш, mount хийсэн файлаас уншина — `valueFrom.secretKeyRef` нь утгыг env хувьсагчаар дамжуулсан хэвээр байдаг тул CKV_K8S_35 -> TATAR-SEC-001 (HIGH) асаалттай үлдэнэ (хэмжиж баталсан).",
+  "total": 0,
+  "counts": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 0,
+    "LOW": 0,
+    "INFO": 0
+  },
+  "controls": []
+}

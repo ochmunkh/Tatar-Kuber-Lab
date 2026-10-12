@@ -1,1 +1,1 @@
-{ "checkov": "3.3.8", "trivy": "0.53.0", "kubescape": "3.0.8", "popeye": "0.21.5" }
+{"checkov":"3.3.8","trivy":"0.53.0","kubescape":"3.0.8","popeye":"0.21.5","corpus_sha256":"4f3d91b470184968120e13844f88cce1632b65c03433f2d98888703afc526e8c"}

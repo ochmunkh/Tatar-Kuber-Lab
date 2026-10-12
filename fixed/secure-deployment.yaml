@@ -18,6 +18,10 @@ spec:
         seccompProfile: { type: RuntimeDefault }
       containers:
         - name: app
+          # The digest is a deliberate ALL-ZEROS PLACEHOLDER: it satisfies "pin by digest"
+          # for static scanners but does NOT resolve in a registry. `kubectl apply` works;
+          # the pull does not. For the Kind walkthrough, swap in the real digest:
+          #   docker buildx imagetools inspect nginx:1.25.3 --format '{{.Manifest.Digest}}'
           image: nginx:1.25.3@sha256:0000000000000000000000000000000000000000000000000000000000000000
           imagePullPolicy: IfNotPresent
           ports: [{ containerPort: 8080 }]
