@@ -201,13 +201,20 @@ tatar-kuber verify-lab --input "${OUT_FIXED}/scan-result.json" --expected expect
 }
 
 echo; echo "== 7. baseline — per-finding diff against the committed ${GOLDEN} =="
-# Stripped from BOTH sides: fields that change on every run. result_hash is deliberately KEPT —
-# it is sha256 over id+severity only, so it is a real signal, not noise.
-STABLE='del(.metadata.scan_id, .metadata.started_at, .metadata.finished_at)
+# Stripped from BOTH sides: fields that change without the findings changing. result_hash is
+# deliberately KEPT — it is sha256 over id+severity only, so it is a real signal, not noise.
+#
+# tatar_version is stripped for a different reason than the timestamps. It does not move on
+# every run; it moves on every engine release. Leaving it in made this check fail on the
+# version bump alone, with a one-line diff and nothing else wrong — which would have trained
+# whoever saw it to regenerate the baseline without reading the diff, the exact habit this
+# step exists to prevent. The engine version belongs to the tool, not to the findings; the
+# committed baseline still records which version produced it.
+STABLE='del(.metadata.scan_id, .metadata.started_at, .metadata.finished_at, .metadata.tatar_version)
         | .findings = ((.findings // []) | map(del(.first_seen, .last_seen)))'
-# The same five fields as a line filter, for the jq-less path. An unfiltered diff is not an
-# option: scan_id and the four timestamps move on EVERY run, so it could never come back clean.
-VOLATILE_LINES='^[[:space:]]*"(scan_id|started_at|finished_at|first_seen|last_seen)"[[:space:]]*:'
+# The same fields as a line filter, for the jq-less path. An unfiltered diff is not an option:
+# scan_id and the four timestamps move on EVERY run, so it could never come back clean.
+VOLATILE_LINES='^[[:space:]]*"(scan_id|started_at|finished_at|first_seen|last_seen|tatar_version)"[[:space:]]*:'
 # norm SRC DST — canonical JSON with jq; otherwise the file minus the volatile lines. The
 # fallback is weaker in two ways: it compares text, so re-ordered keys or re-indented JSON
 # read as drift, and the filter is by key NAME, so a nested field that happened to be called
