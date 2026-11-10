@@ -1,5 +1,6 @@
 # TATAR-Kuber gate policy for the lab.
-# The lab corpus is intentionally vulnerable (11 HIGH), so `gate --fail-on high`
+# The lab corpus is intentionally vulnerable
+# (<!-- counts:policy -->1 CRITICAL + 16 HIGH<!-- /counts:policy -->), so `gate --fail-on high`
 # is EXPECTED to fail — that's the point: the gate blocks an insecure posture.
 fail_on: high
 min_score: 0
