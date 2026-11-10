@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "metadata": {
-    "scan_id": "ca5ef3505b218e70569209e06b2cb6dd",
+    "scan_id": "9b6374c71f2465ff2e1e9afcccf742fc",
     "cluster_name": "tatar-kuber-lab",
     "scan_mode": "offline",
     "lang": "en",
-    "tatar_version": "1.0.3",
+    "tatar_version": "1.0.5",
     "scanner_versions": {
       "checkov": "3.3.8",
       "kubescape": "3.0.8",
@@ -54,8 +54,8 @@
         "findings": 1
       }
     ],
-    "started_at": "2026-09-29T04:53:01Z",
-    "finished_at": "2026-09-29T04:53:01Z",
+    "started_at": "2026-11-10T11:05:51Z",
+    "finished_at": "2026-11-10T11:05:51Z",
     "result_hash": "sha256:caf71c59f9c1bd114a9d4235b9549f93f4896975430e0b87b1d724a8e77cfb8e"
   },
   "summary": {
@@ -132,12 +132,13 @@
       "severity": "CRITICAL",
       "original_severity": "CRITICAL",
       "title": "cluster-admin binding overuse",
-      "description": "",
+      "description": "A subject is bound directly to cluster-admin.",
       "remediation": "Restrict cluster-admin; use specific scoped roles.",
       "found_by": [
         "kubescape"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12,
       "risk_factors": {
@@ -155,8 +156,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "kubescape",
@@ -192,6 +193,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -209,8 +211,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -236,7 +238,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Dangerous capabilities added",
-      "description": "",
+      "description": "Dangerous Linux capabilities such as SYS_ADMIN or NET_ADMIN are added to the container.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -248,6 +250,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -258,8 +261,8 @@
         "contribution": 12.6
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -290,7 +293,7 @@
         {
           "scanner": "kubescape",
           "path": "spec.template.spec.containers[0].securityContext.privileged",
-          "value": "зөвлөмж: false"
+          "value": "suggested: false"
         },
         {
           "scanner": "trivy",
@@ -304,6 +307,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -321,8 +325,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "references": [
         "https://avd.aquasec.com/misconfig/ksv017"
       ],
@@ -369,6 +373,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -386,8 +391,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -413,7 +418,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Allow privilege escalation",
-      "description": "",
+      "description": "allowPrivilegeEscalation=true lets a process gain more privileges than the one that started it.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -425,6 +430,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -442,8 +448,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -461,7 +467,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Allow privilege escalation",
-      "description": "",
+      "description": "allowPrivilegeEscalation=true lets a process gain more privileges than the one that started it.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -473,6 +479,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -490,8 +497,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -509,7 +516,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Dangerous capabilities added",
-      "description": "",
+      "description": "Dangerous Linux capabilities such as SYS_ADMIN or NET_ADMIN are added to the container.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -521,6 +528,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -531,8 +539,8 @@
         "contribution": 12.6
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -554,7 +562,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Dangerous capabilities added",
-      "description": "",
+      "description": "Dangerous Linux capabilities such as SYS_ADMIN or NET_ADMIN are added to the container.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -566,6 +574,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -576,8 +585,8 @@
         "contribution": 12.6
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -599,7 +608,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Allow privilege escalation",
-      "description": "",
+      "description": "allowPrivilegeEscalation=true lets a process gain more privileges than the one that started it.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -611,6 +620,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -628,8 +638,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -647,7 +657,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Secret exposed in environment variable",
-      "description": "Илэрсэн нууц: AWS",
+      "description": "secret detected: AWS",
       "evidence": [
         {
           "scanner": "trivy",
@@ -659,6 +669,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -676,8 +687,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "trivy",
@@ -695,7 +706,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Allow privilege escalation",
-      "description": "",
+      "description": "allowPrivilegeEscalation=true lets a process gain more privileges than the one that started it.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -707,6 +718,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -724,8 +736,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -761,6 +773,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -778,8 +791,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -805,7 +818,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Dangerous capabilities added",
-      "description": "",
+      "description": "Dangerous Linux capabilities such as SYS_ADMIN or NET_ADMIN are added to the container.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -817,6 +830,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -827,8 +841,8 @@
         "contribution": 12.6
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -850,7 +864,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Dangerous capabilities added",
-      "description": "",
+      "description": "Dangerous Linux capabilities such as SYS_ADMIN or NET_ADMIN are added to the container.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -862,6 +876,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 12.6,
       "risk_factors": {
@@ -872,8 +887,8 @@
         "contribution": 12.6
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -895,7 +910,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Wildcard permissions in role",
-      "description": "",
+      "description": "A role grants wildcard (*) resources or verbs.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -907,6 +922,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 8.4,
       "risk_factors": {
@@ -924,8 +940,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -943,7 +959,7 @@
       "severity": "HIGH",
       "original_severity": "HIGH",
       "title": "Excessive / risky permissions",
-      "description": "",
+      "description": "A role grants risky permissions such as reading secrets, pods/exec, or escalate/bind.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -955,6 +971,7 @@
         "checkov"
       ],
       "confidence": "MEDIUM",
+      "confidence_reason": "single-scanner-heuristic",
       "blind_shot": false,
       "risk_contribution": 7,
       "risk_factors": {
@@ -965,8 +982,8 @@
         "contribution": 7
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -996,7 +1013,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Read-only root filesystem disabled",
-      "description": "",
+      "description": "readOnlyRootFilesystem=false leaves the container's root filesystem writable.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1008,6 +1025,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1018,8 +1036,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1037,7 +1055,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing securityContext",
-      "description": "",
+      "description": "No securityContext is defined on the pod or container, so every hardening default is left to the runtime.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1049,6 +1067,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1059,8 +1078,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1078,7 +1097,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing securityContext",
-      "description": "",
+      "description": "No securityContext is defined on the pod or container, so every hardening default is left to the runtime.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1090,6 +1109,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1100,8 +1120,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1119,7 +1139,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Service account token auto-mounted",
-      "description": "",
+      "description": "automountServiceAccountToken=true mounts a token the workload may not need.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1131,6 +1151,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1148,8 +1169,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1167,7 +1188,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Service account token auto-mounted",
-      "description": "",
+      "description": "automountServiceAccountToken=true mounts a token the workload may not need.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1179,6 +1200,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1196,8 +1218,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1215,7 +1237,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing securityContext",
-      "description": "",
+      "description": "No securityContext is defined on the pod or container, so every hardening default is left to the runtime.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1227,6 +1249,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1237,8 +1260,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1256,7 +1279,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Read-only root filesystem disabled",
-      "description": "",
+      "description": "readOnlyRootFilesystem=false leaves the container's root filesystem writable.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1268,6 +1291,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1278,8 +1302,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1297,7 +1321,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Read-only root filesystem disabled",
-      "description": "",
+      "description": "readOnlyRootFilesystem=false leaves the container's root filesystem writable.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1309,6 +1333,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1319,8 +1344,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1338,7 +1363,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Default seccomp profile not set",
-      "description": "",
+      "description": "No seccompProfile is set, so system calls are not restricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1350,6 +1375,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1360,8 +1386,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1379,7 +1405,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Container running as root",
-      "description": "",
+      "description": "The container runs as UID 0 (root).",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1391,6 +1417,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1401,8 +1428,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1420,7 +1447,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Read-only root filesystem disabled",
-      "description": "",
+      "description": "readOnlyRootFilesystem=false leaves the container's root filesystem writable.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1432,6 +1459,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1442,8 +1470,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1461,7 +1489,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Container running as root",
-      "description": "",
+      "description": "The container runs as UID 0 (root).",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1473,6 +1501,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1483,8 +1512,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1502,7 +1531,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Default seccomp profile not set",
-      "description": "",
+      "description": "No seccompProfile is set, so system calls are not restricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1514,6 +1543,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1524,8 +1554,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1561,6 +1591,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1571,8 +1602,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1598,7 +1629,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Default seccomp profile not set",
-      "description": "",
+      "description": "No seccompProfile is set, so system calls are not restricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1610,6 +1641,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1620,8 +1652,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1656,6 +1688,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1673,8 +1706,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1696,7 +1729,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Service account token auto-mounted",
-      "description": "",
+      "description": "automountServiceAccountToken=true mounts a token the workload may not need.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1708,6 +1741,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1725,8 +1759,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1744,7 +1778,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Default seccomp profile not set",
-      "description": "",
+      "description": "No seccompProfile is set, so system calls are not restricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1756,6 +1790,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1766,8 +1801,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1785,12 +1820,13 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "remediation": "Define a NetworkPolicy for each namespace.",
       "found_by": [
         "kubescape"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1808,8 +1844,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "kubescape",
@@ -1827,7 +1863,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing securityContext",
-      "description": "",
+      "description": "No securityContext is defined on the pod or container, so every hardening default is left to the runtime.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1839,6 +1875,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1849,8 +1886,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1868,7 +1905,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Service account token auto-mounted",
-      "description": "",
+      "description": "automountServiceAccountToken=true mounts a token the workload may not need.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1880,6 +1917,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1897,8 +1935,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1916,7 +1954,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Default seccomp profile not set",
-      "description": "",
+      "description": "No seccompProfile is set, so system calls are not restricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1928,6 +1966,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1938,8 +1977,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1957,7 +1996,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing securityContext",
-      "description": "",
+      "description": "No securityContext is defined on the pod or container, so every hardening default is left to the runtime.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -1969,6 +2008,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -1979,8 +2019,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -1998,7 +2038,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Read-only root filesystem disabled",
-      "description": "",
+      "description": "readOnlyRootFilesystem=false leaves the container's root filesystem writable.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2010,6 +2050,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -2020,8 +2061,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2039,7 +2080,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Image uses :latest tag",
-      "description": "",
+      "description": "The image uses the :latest tag, so a deploy is not reproducible.",
       "evidence": [
         {
           "scanner": "popeye",
@@ -2052,6 +2093,7 @@
         "popeye"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -2069,8 +2111,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "popeye",
@@ -2088,7 +2130,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Container running as root",
-      "description": "",
+      "description": "The container runs as UID 0 (root).",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2100,6 +2142,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -2110,8 +2153,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2129,7 +2172,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Service account token auto-mounted",
-      "description": "",
+      "description": "automountServiceAccountToken=true mounts a token the workload may not need.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2141,6 +2184,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -2158,8 +2202,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2177,7 +2221,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Container running as root",
-      "description": "",
+      "description": "The container runs as UID 0 (root).",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2189,6 +2233,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 5.4,
       "risk_factors": {
@@ -2199,8 +2244,8 @@
         "contribution": 5.4
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2217,7 +2262,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2229,6 +2274,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 3.6,
       "risk_factors": {
@@ -2246,8 +2292,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2264,7 +2310,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2276,6 +2322,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 3.6,
       "risk_factors": {
@@ -2293,8 +2340,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2311,7 +2358,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2323,6 +2370,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 3.6,
       "risk_factors": {
@@ -2340,8 +2388,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2358,7 +2406,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2370,6 +2418,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 3.6,
       "risk_factors": {
@@ -2387,8 +2436,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2405,7 +2454,7 @@
       "severity": "MEDIUM",
       "original_severity": "MEDIUM",
       "title": "Missing NetworkPolicy",
-      "description": "",
+      "description": "The namespace has no NetworkPolicy, so traffic between pods is unrestricted.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2417,6 +2466,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 3.6,
       "risk_factors": {
@@ -2434,8 +2484,8 @@
         }
       ],
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2453,7 +2503,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "imagePullPolicy not set correctly",
-      "description": "",
+      "description": "imagePullPolicy is unset, or set to a value that does not match the tag in use.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2465,6 +2515,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2475,8 +2526,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2494,7 +2545,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing CPU/memory limits",
-      "description": "",
+      "description": "No resources.limits are set, so one workload can starve the others on the node.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2506,6 +2557,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2516,8 +2568,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2547,7 +2599,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing liveness probe",
-      "description": "",
+      "description": "No livenessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2559,6 +2611,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2569,8 +2622,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2588,7 +2641,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing readiness probe",
-      "description": "",
+      "description": "No readinessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2600,6 +2653,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2610,8 +2664,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2629,7 +2683,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing liveness probe",
-      "description": "",
+      "description": "No livenessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2641,6 +2695,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2651,8 +2706,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2670,7 +2725,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing readiness probe",
-      "description": "",
+      "description": "No readinessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2682,6 +2737,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2692,8 +2748,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2711,7 +2767,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "imagePullPolicy not set correctly",
-      "description": "",
+      "description": "imagePullPolicy is unset, or set to a value that does not match the tag in use.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2723,6 +2779,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2733,8 +2790,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2752,7 +2809,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing CPU/memory limits",
-      "description": "",
+      "description": "No resources.limits are set, so one workload can starve the others on the node.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2764,6 +2821,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2774,8 +2832,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2805,7 +2863,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing liveness probe",
-      "description": "",
+      "description": "No livenessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2817,6 +2875,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2827,8 +2886,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2846,7 +2905,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing CPU/memory limits",
-      "description": "",
+      "description": "No resources.limits are set, so one workload can starve the others on the node.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2858,6 +2917,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2868,8 +2928,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2899,7 +2959,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "imagePullPolicy not set correctly",
-      "description": "",
+      "description": "imagePullPolicy is unset, or set to a value that does not match the tag in use.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2911,6 +2971,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2921,8 +2982,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2940,7 +3001,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing liveness probe",
-      "description": "",
+      "description": "No livenessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2952,6 +3013,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -2962,8 +3024,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -2981,7 +3043,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing liveness probe",
-      "description": "",
+      "description": "No livenessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -2993,6 +3055,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3003,8 +3066,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3022,7 +3085,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing readiness probe",
-      "description": "",
+      "description": "No readinessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -3034,6 +3097,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3044,8 +3108,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3063,7 +3127,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing readiness probe",
-      "description": "",
+      "description": "No readinessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -3075,6 +3139,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3085,8 +3150,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3121,6 +3186,7 @@
         "trivy"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "corroborated",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3131,8 +3197,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3166,7 +3232,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "imagePullPolicy not set correctly",
-      "description": "",
+      "description": "imagePullPolicy is unset, or set to a value that does not match the tag in use.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -3178,6 +3244,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3188,8 +3255,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3207,7 +3274,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing CPU/memory limits",
-      "description": "",
+      "description": "No resources.limits are set, so one workload can starve the others on the node.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -3219,6 +3286,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3229,8 +3297,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",
@@ -3260,7 +3328,7 @@
       "severity": "LOW",
       "original_severity": "LOW",
       "title": "Missing readiness probe",
-      "description": "",
+      "description": "No readinessProbe is defined.",
       "evidence": [
         {
           "scanner": "checkov",
@@ -3272,6 +3340,7 @@
         "checkov"
       ],
       "confidence": "HIGH",
+      "confidence_reason": "single-scanner",
       "blind_shot": false,
       "risk_contribution": 1.8,
       "risk_factors": {
@@ -3282,8 +3351,8 @@
         "contribution": 1.8
       },
       "status": "OPEN",
-      "first_seen": "2026-09-29T04:53:01Z",
-      "last_seen": "2026-09-29T04:53:01Z",
+      "first_seen": "2026-11-10T11:05:51Z",
+      "last_seen": "2026-11-10T11:05:51Z",
       "raw_refs": [
         {
           "scanner": "checkov",

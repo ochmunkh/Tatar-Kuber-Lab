@@ -16,6 +16,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 command -v jq >/dev/null || { echo "sync-readme-counts: jq is not on PATH." >&2; exit 127; }
+command -v python3 >/dev/null || { echo "sync-readme-counts: python3 is not on PATH." >&2; exit 127; }
 
 EXPECTED=expected/expected-findings.json
 MODE=write
@@ -52,18 +53,35 @@ verify_block() {
 }
 
 # splice <file> <name> <body> — replace the text between the NAME markers, on stdout.
+#
+# NOT jq. jq's string `index` returns a BYTE offset while its slicing `$d[a:b]`
+# counts CODEPOINTS, and `length` counts codepoints too. On an ASCII file the
+# two agree and this looks fine; on this README — which is half Монгол — every
+# Cyrillic character above a marker pushes the byte offset two ahead of the
+# codepoint offset, and the drift grows down the file.
+#
+# The result was not a crash. It was a README quietly rewritten into nonsense:
+# `root-user.yaml` became `root-use(20)ml`, `Checkov 3.3.8` became `Checkov 3(20)`,
+# whole sentences were cut, and a stray block was appended past EOF. The script
+# exited 0, printed "updated README.md", and --check told you to run the mode
+# that does the damage. A guard that destroys the file it guards.
+#
+# Python slices by codepoint throughout, so offset and length agree.
 splice() {
-  jq -Rsj --arg n "$2" --arg b "$3" '
-    . as $d
-    | "<!-- counts:\($n) -->" as $s
-    | "<!-- /counts:\($n) -->" as $e
-    | ($d | index($s)) as $i
-    | ($d | index($e)) as $j
-    | if   $i == null then error("marker <!-- counts:\($n) --> not found")
-      elif $j == null then error("marker <!-- /counts:\($n) --> not found")
-      elif $j < $i    then error("markers for \($n) are in the wrong order")
-      else $d[: $i + ($s | length)] + $b + $d[$j :] end
-  ' "$1"
+  python3 - "$1" "$2" "$3" <<'EOF'
+import io, sys
+path, name, body = sys.argv[1], sys.argv[2], sys.argv[3]
+doc = io.open(path, encoding="utf-8").read()
+start, end = f"<!-- counts:{name} -->", f"<!-- /counts:{name} -->"
+i, j = doc.find(start), doc.find(end)
+if i < 0:
+    sys.exit(f"marker {start} not found")
+if j < 0:
+    sys.exit(f"marker {end} not found")
+if j < i:
+    sys.exit(f"markers for {name} are in the wrong order")
+sys.stdout.write(doc[: i + len(start)] + body + doc[j:])
+EOF
 }
 
 # apply <file> <name> <body> — splice in place.
